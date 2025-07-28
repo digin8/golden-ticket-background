@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Golden Ticket Background Animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Reset & sizing */
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden; /* prevent scroll on mobile */
+      background: #000; /* black page background */
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #container {
+      position: relative;
+      display: inline-block; /* bounds overlay to img size */
+    }
+
+    #background {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      opacity: 1;
+    }
+
+    /* Bottom Sheet image overlay that fades in */
+    #bottomsheet {
+      position: absolute;
+      left: 50%; /* center horizontally */
+      bottom: 12px; /* margin from bottom */
+      transform: translateX(-50%);
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 2s forwards;
+    }
+
+    /* Golden ticket images positioned above bottom sheet */
+    #goldenticket {
+      position: absolute;
+      left: 50%;
+      bottom: 330px; /* positioned at 330px from bottom */
+      transform: translateX(-50%);
+      width: auto;
+      max-width: 36%;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 7;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 2s forwards;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Fan effect golden tickets */
+    .goldenticket-fan {
+      position: absolute;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      opacity: 0;
+      animation: fanOut 0.8s ease-out 2.6s forwards;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      transform-origin: center bottom;
+    }
+
+    #goldenticket-1 {
+      left: 48%;
+      bottom: 340px;
+      max-width: 31%;
+      z-index: 6;
+      --final-rotation: -16deg;
+    }
+
+    #goldenticket-2 {
+      left: 53%;
+      bottom: 340px;
+      max-width: 31%;
+      z-index: 6;
+      --final-rotation: 16deg;
+    }
+
+    #goldenticket-3 {
+      left: 46%;
+      bottom: 350px;
+      max-width: 26%;
+      z-index: 5;
+      --final-rotation: -32deg;
+    }
+
+    #goldenticket-4 {
+      left: 55%;
+      bottom: 350px;
+      max-width: 26%;
+      z-index: 5;
+      --final-rotation: 32deg;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fanOut {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) rotate(0deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) rotate(var(--final-rotation));
+      }
+    }
+
+    #overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none; /* let any clicks pass through */
+      background: rgba(10, 25, 68, 0.12); /* navy tint at 12% alpha */
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+  <!-- p5.js for easy canvas-based animation -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <!-- Replace `monzo_mockup.png` with the actual filename of your screenshot -->
+    <img id="background" src="Overview.png" alt="Monzo UI Screenshot" />
+    <img id="bottomsheet" src="Bottom Sheet.png" alt="Bottom sheet" />
+    
+    <!-- Fan effect golden tickets (behind main ticket) -->
+    <img id="goldenticket-1" class="goldenticket-fan" src="goldent-ticket-1.png" alt="Golden ticket fan 1" />
+    <img id="goldenticket-2" class="goldenticket-fan" src="goldent-ticket-2.png" alt="Golden ticket fan 2" />
+    <img id="goldenticket-3" class="goldenticket-fan" src="goldent-ticket-3.png" alt="Golden ticket fan 3" />
+    <img id="goldenticket-4" class="goldenticket-fan" src="goldent-ticket-4.png" alt="Golden ticket fan 4" />
+    
+    <!-- Main golden ticket (in front) -->
+    <img id="goldenticket" src="goldent-ticket.png" alt="Golden ticket" />
+    <div id="overlay"></div>
+  </div>
+
+  <script src="sketch.js?v=3"></script>
+</body>
+</html> 
