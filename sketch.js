@@ -35,10 +35,14 @@ function draw() {
   });
 
   // ---- Sparkles ----
-  // Spawn new sparkles periodically
-  if (frameCount % 18 === 0) sparkles.push(new Sparkle());
+  // Spawn new sparkles more frequently
+  if (frameCount % 12 === 0) {
+    sparkles.push(new Sparkle());
+    // Occasionally add an extra sparkle for more density
+    if (random() < 0.3) sparkles.push(new Sparkle());
+  }
 
-  // Update & render; remove finished sparkles
+  // Update & render sparkles with sharper appearance
   for (let i = sparkles.length - 1; i >= 0; i--) {
     const s = sparkles[i];
     s.update();
@@ -117,7 +121,7 @@ class Sparkle {
     translate(this.x, this.y);
     const alphaVal = this.fade;
     stroke(0, 0, 100, alphaVal);
-    strokeWeight(2.5);
+    strokeWeight(1.5); // Thinner lines for sharper appearance
     line(-this.r, 0, this.r, 0);
     line(0, -this.r, 0, this.r);
     pop();
