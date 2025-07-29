@@ -59,7 +59,7 @@ class Cloud {
     const hueVal = random(210, 230); // navy-ish variation
     const satVal = random(15, 35);
     const lightVal = random(12, 25);
-    this.col = color(hueVal, satVal, lightVal, 0.08);
+    this.col = color(hueVal, satVal, lightVal, 0.05);
 
     // Position clouds in the middle area
     this.y = random(height * 0.3, height * 0.7);
@@ -77,7 +77,7 @@ class Cloud {
   }
 
   render() {
-    const steps = 7;
+    const steps = 10;
     const baseAlpha = alpha(this.col);
     for (let i = steps; i >= 1; i--) {
       const r = this.radius * (i / steps);

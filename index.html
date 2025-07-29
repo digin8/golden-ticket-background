@@ -50,6 +50,16 @@
       animation: fadeIn 0.6s ease-out 2s forwards;
     }
 
+    /* Golden tickets container */
+    #goldentickets-container {
+      position: absolute;
+      left: 400px;
+      top: 200px;
+      width: 600px;
+      height: 400px;
+      pointer-events: none;
+    }
+
     /* Golden ticket images positioned above bottom sheet */
     #goldenticket {
       position: absolute;
@@ -57,7 +67,7 @@
       bottom: 330px; /* positioned at 330px from bottom */
       transform: translateX(-50%);
       width: auto;
-      max-width: 32.4vw; /* 36% of 90vw to match background scaling */
+      max-width: 16.2vw; /* 50% of 32.4vw */
       height: auto;
       object-fit: contain;
       pointer-events: none;
@@ -83,7 +93,7 @@
     #goldenticket-1 {
       left: 48%;
       bottom: 340px;
-      max-width: 27.9vw; /* 31% of 90vw to match background scaling */
+      max-width: 13.95vw; /* 50% of 27.9vw */
       z-index: 6;
       --final-rotation: -16deg;
     }
@@ -91,7 +101,7 @@
     #goldenticket-2 {
       left: 53%;
       bottom: 340px;
-      max-width: 27.9vw; /* 31% of 90vw to match background scaling */
+      max-width: 13.95vw; /* 50% of 27.9vw */
       z-index: 6;
       --final-rotation: 16deg;
     }
@@ -99,7 +109,7 @@
     #goldenticket-3 {
       left: 46%;
       bottom: 350px;
-      max-width: 23.4vw; /* 26% of 90vw to match background scaling */
+      max-width: 11.7vw; /* 50% of 23.4vw */
       z-index: 5;
       --final-rotation: -32deg;
     }
@@ -107,7 +117,7 @@
     #goldenticket-4 {
       left: 55%;
       bottom: 350px;
-      max-width: 23.4vw; /* 26% of 90vw to match background scaling */
+      max-width: 11.7vw; /* 50% of 23.4vw */
       z-index: 5;
       --final-rotation: 32deg;
     }
@@ -139,6 +149,8 @@
 
     canvas {
       display: block;
+      filter: blur(1px);
+      backdrop-filter: blur(1px);
     }
   </style>
   <!-- p5.js for easy canvas-based animation -->
@@ -150,17 +162,20 @@
     <img id="background" src="Overview.png" alt="Monzo UI Screenshot" />
     <img id="bottomsheet" src="Bottom Sheet.png" alt="Bottom sheet" />
     
-    <!-- Fan effect golden tickets (behind main ticket) -->
-    <img id="goldenticket-1" class="goldenticket-fan" src="goldent-ticket-1.png" alt="Golden ticket fan 1" />
-    <img id="goldenticket-2" class="goldenticket-fan" src="goldent-ticket-2.png" alt="Golden ticket fan 2" />
-    <img id="goldenticket-3" class="goldenticket-fan" src="goldent-ticket-3.png" alt="Golden ticket fan 3" />
-    <img id="goldenticket-4" class="goldenticket-fan" src="goldent-ticket-4.png" alt="Golden ticket fan 4" />
-    
-    <!-- Main golden ticket (in front) -->
-    <img id="goldenticket" src="goldent-ticket.png" alt="Golden ticket" />
+    <!-- Golden tickets container -->
+    <div id="goldentickets-container">
+      <!-- Fan effect golden tickets (behind main ticket) -->
+      <img id="goldenticket-1" class="goldenticket-fan" src="goldent-ticket-1.png" alt="Golden ticket fan 1" />
+      <img id="goldenticket-2" class="goldenticket-fan" src="goldent-ticket-2.png" alt="Golden ticket fan 2" />
+      <img id="goldenticket-3" class="goldenticket-fan" src="goldent-ticket-3.png" alt="Golden ticket fan 3" />
+      <img id="goldenticket-4" class="goldenticket-fan" src="goldent-ticket-4.png" alt="Golden ticket fan 4" />
+      
+      <!-- Main golden ticket (in front) -->
+      <img id="goldenticket" src="goldent-ticket.png" alt="Golden ticket" />
+    </div>
     <div id="overlay"></div>
   </div>
 
-  <script src="sketch.js?v=3"></script>
+  <script src="sketch.js?v=24"></script>
 </body>
 </html> 
